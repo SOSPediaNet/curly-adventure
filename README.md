@@ -1,4 +1,4 @@
-# curly-adventure
+# curly-credentials
 
 A simple java based project to manage our day to day credentials
 And remember 
