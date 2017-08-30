@@ -5,7 +5,7 @@ import java.sql.*;
 
 public class DB {
     
-    String url ="/home/superlewis/Documents/NetBeansProjects/SoSPedia/aplicacion.sqlite";
+    String url ="d:/sql/aplicacion.sqlite";
     
     Connection connect;
     
@@ -32,6 +32,8 @@ public class DB {
         try {
             
             connect.close();
+            
+            System.out.println("Te has desconectado de la base de datos");
             
         } catch (SQLException ex){
             
