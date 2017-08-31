@@ -5,8 +5,11 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -20,6 +23,76 @@ public class windowusers extends JPanel{
     private JPanel panel1, panel2, panel3;
     private JTextField tid, tservicio, tusuario, tpass;
     private JButton botonalta, botonbaja, botonmodificar;
+    private int files=0;
+    
+    class EscucharBoton implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            
+            if(event.getActionCommand().equals("Alta")) {
+                
+                ubd.connect();
+                u = new usuarios();
+                u.setServicio(tservicio.getText());
+                u.setUsuario(tusuario.getText());
+                u.setPass(tpass.getText());
+                files = ubd.alta(u);
+                
+                    if(files==1) {
+                        
+                        JOptionPane.showMessageDialog(null,"Alta realizada");
+                        
+                    } else {
+                        
+                        JOptionPane.showMessageDialog(null,"No se ha podido hacer el alta");
+                        
+                    }
+                    
+                    ubd.close();
+ 
+            } else if(event.getActionCommand().equals("Baja")) {
+                    
+                ubd.connect();
+                    int id=Integer.parseInt(tid.getText());
+                    files=ubd.baixa(id);
+                    
+                     if(files==1) {
+                         
+                        JOptionPane.showMessageDialog(null,"Baja de usuario echa correctamente");
+                        
+                    } else {
+                         
+                        JOptionPane.showMessageDialog(null,"No s'ha pogut fer la baixa");
+                        
+                    }
+                    ubd.close();
+                    
+            } else if(event.getActionCommand().equals("Modificar")) {
+                
+                    ubd.connect();
+                    u = new usuarios();
+                    u.setId(Integer.parseInt(tid.getText()));
+                    u.setServicio(tservicio.getText());
+                    u.setUsuario(tusuario.getText());
+                    u.setPass(tpass.getText());
+                    files = ubd.modificacio(u);
+                    
+                        if(files==1) {
+                            
+                            JOptionPane.showMessageDialog(null,"Modificación realizada con éxito");
+                            
+                        } else {
+                            
+                        JOptionPane.showMessageDialog(null,"No se ha podido realizar correctamente la modificación");
+                        
+                    }
+                    
+                    ubd.close();
+                    
+            }
+            
+        }
+    }
     
     
     public windowusers (){
@@ -41,10 +114,13 @@ public class windowusers extends JPanel{
         this.setLocation (200,200);
         ltitol = new JLabel("Administración de Usuarios");
         ltitol.setFont(gran);
+        initPanel1();
+        initPanel2();
+        initPanel3();
         this.add(ltitol, BorderLayout.NORTH);
-        this.add(panel1,BorderLayout.WEST);
-        this.add(panel2,BorderLayout.CENTER);
-        this.add(panel3,BorderLayout.SOUTH);
+        this.add(panel1, BorderLayout.WEST);
+        this.add(panel2, BorderLayout.CENTER);
+        this.add(panel3, BorderLayout.SOUTH);
         
     }
     
@@ -85,13 +161,13 @@ public class windowusers extends JPanel{
         panel3 = new JPanel();
         panel3.setLayout(new FlowLayout());
         botonalta = new JButton("Alta");botonalta.setFont(normal);
-        //botonalta.addActionListener(new EscucharBoton());
+        botonalta.addActionListener(new EscucharBoton());
         panel3.add(botonalta);
         botonbaja = new JButton("Baja");botonbaja.setFont(normal);
-        //botonbaja.addActionListener(new EscucharBoton());
+        botonbaja.addActionListener(new EscucharBoton());
         panel3.add(botonbaja);
         botonmodificar = new JButton("Modificar");botonmodificar.setFont(normal);
-        //botonmodificar.addActionListener(new EscucharBoton());
+        botonmodificar.addActionListener(new EscucharBoton());
         panel3.add(botonmodificar);
         
     }
