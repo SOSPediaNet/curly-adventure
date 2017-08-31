@@ -2,6 +2,7 @@
 package exec;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class DB {
     
@@ -16,12 +17,14 @@ public class DB {
             
             connect = DriverManager.getConnection("jdbc:sqlite:"+url);
             if (connect!=null){
-                System.out.println("Conectado");
+                
+                JOptionPane.showMessageDialog(null,"Te has conectado correctamente a la base de datos");
+                
             }
             
         } catch (SQLException ex){
             
-            System.out.println("No se ha podido conectar");
+            JOptionPane.showMessageDialog(null,"No se ha podido conectar a la base de datos");
             
         }
         
@@ -33,11 +36,11 @@ public class DB {
             
             connect.close();
             
-            System.out.println("Te has desconectado de la base de datos");
+            JOptionPane.showMessageDialog(null,"Te has desconectado correctamente de la base de datos");
             
         } catch (SQLException ex){
             
-            System.out.println("No se ha cerrado correctamente");
+            JOptionPane.showMessageDialog(null,"No se ha desconectado correctamente de la base de datos");
             
         }
         
