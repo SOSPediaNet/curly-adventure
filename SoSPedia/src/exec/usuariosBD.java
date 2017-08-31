@@ -2,6 +2,7 @@
 package exec;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class usuariosBD extends DB{
     
@@ -11,8 +12,9 @@ public class usuariosBD extends DB{
         
         try {
             
-            PreparedStatement st = connect.prepareStatement(cadenaSQL);
-            
+            int files=instruccions.executeUpdate(cadenaSQL);
+            return files;
+                        
 	} catch (SQLException ex) {
             
             System.err.println(ex.getMessage());
@@ -26,12 +28,15 @@ public class usuariosBD extends DB{
    
    
    public int baixa(int id) {
-       
-     String cadenaSQL="DELETE FROM usuarios WHERE id="+id;
+     
+     
+     String cadenaSQL="DELETE * FROM usuarios WHERE id="+id;
+     JOptionPane.showMessageDialog(null,cadenaSQL);
      
      try {
          
-            PreparedStatement st = connect.prepareStatement(cadenaSQL);
+            instruccions.executeUpdate(cadenaSQL);
+            
         
 	} catch (SQLException ex) {
 	
@@ -47,11 +52,12 @@ public class usuariosBD extends DB{
     String cadenaSQL="UPDATE usuarios SET servicio='"+u.getServicio()+
 		  "', usuario='"+u.getUsuario()
   		+ "' WHERE pass="+u.getPass();
-    //JOptionPane.showMessageDialog(null,cadenaSQL);
+    JOptionPane.showMessageDialog(null,cadenaSQL);
     
     try {
         
-            PreparedStatement st = connect.prepareStatement(cadenaSQL);
+            int files=instruccions.executeUpdate(cadenaSQL);
+            return files;
         
 	} catch (SQLException ex) {
             

@@ -5,9 +5,10 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 
 public class DB {
-    
-    String url ="d:/sql/aplicacion.sqlite";
-    
+   
+    String url = "D:/aplicacion.db";
+    Statement instruccions=null;
+ 
     Connection connect;
     
     
@@ -16,6 +17,7 @@ public class DB {
         try {
             
             connect = DriverManager.getConnection("jdbc:sqlite:"+url);
+            instruccions = connect.createStatement();
             if (connect!=null){
                 
                 JOptionPane.showMessageDialog(null,"Te has conectado correctamente a la base de datos");
