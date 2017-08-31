@@ -30,12 +30,14 @@ public class usuariosBD extends DB{
    public int baixa(int id) {
      
      
-     String cadenaSQL="DELETE * FROM usuarios WHERE id="+id;
+     String cadenaSQL="DELETE  FROM usuarios WHERE id="+id;
      JOptionPane.showMessageDialog(null,cadenaSQL);
      
      try {
-         
-            instruccions.executeUpdate(cadenaSQL);
+            
+            
+            int files=instruccions.executeUpdate(cadenaSQL);
+            return files;
             
         
 	} catch (SQLException ex) {
