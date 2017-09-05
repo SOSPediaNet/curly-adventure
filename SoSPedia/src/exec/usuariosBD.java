@@ -51,7 +51,7 @@ public class usuariosBD extends DB{
    
    public int modificacio(usuarios u) {
        
-    String cadenaSQL="UPDATE usuarios SET servicio='"+u.getServicio()+
+    String cadenaSQL="UPDATE usuarios SET id='"+u.getId()+"', servicio='"+u.getServicio()+
 		  "', usuario='"+u.getUsuario()
   		+ "' WHERE pass="+u.getPass();
     JOptionPane.showMessageDialog(null,cadenaSQL);
