@@ -13,7 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class windowusers extends JPanel{
+
+public class windowlogin extends JPanel{
     
     private usuarios u=null;
     private usuariosBD ubd=null;
@@ -22,14 +23,14 @@ public class windowusers extends JPanel{
     private JLabel ltitol, lservicio, lusuario, lpass;
     private JPanel panel1, panel2, panel3;
     private JTextField tservicio, tusuario, tpass;
-    private JButton botonalta;
+    private JButton botonlogin;
     private int files=0;
     
-    class EscucharBoton implements ActionListener{
+        class EscucharBoton implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent event) {
             
-            if(event.getActionCommand().equals("Alta")) {
+            if(event.getActionCommand().equals("Login")) {
                 
                 ubd.connect();
                 u = new usuarios();
@@ -40,11 +41,11 @@ public class windowusers extends JPanel{
                 
                     if(files==1) {
                         
-                        JOptionPane.showMessageDialog(null,"Alta realizada");
+                        JOptionPane.showMessageDialog(null,"Logeado con éxito");
                         
                     } else {
                         
-                        JOptionPane.showMessageDialog(null,"No se ha podido hacer el alta");
+                        JOptionPane.showMessageDialog(null,"Imposible logear");
                         
                     }
                     
@@ -54,15 +55,14 @@ public class windowusers extends JPanel{
         }
     }
     
-    
-    public windowusers (){
+    public windowlogin (){
         
         this.initDades();
         this.initGrafics();
         
     }
     
-    public void initDades (){
+        public void initDades (){
         
         ubd = new usuariosBD();
         
@@ -116,10 +116,10 @@ public class windowusers extends JPanel{
         
         panel3 = new JPanel();
         panel3.setLayout(new FlowLayout());
-        botonalta = new JButton("Alta");botonalta.setFont(normal);
-        botonalta.addActionListener(new EscucharBoton());
-        panel3.add(botonalta);
+        botonlogin = new JButton("Login");botonlogin.setFont(normal);
+        botonlogin.addActionListener(new windowlogin.EscucharBoton());
+        panel3.add(botonlogin);
         
     }
-    
+        
 }

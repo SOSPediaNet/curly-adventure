@@ -31,7 +31,7 @@ public class usuariosBD extends DB{
      
      
      String cadenaSQL="DELETE  FROM usuarios WHERE id="+id;
-     JOptionPane.showMessageDialog(null,cadenaSQL);
+     //JOptionPane.showMessageDialog(null,cadenaSQL);
      
      try {
             
@@ -51,10 +51,10 @@ public class usuariosBD extends DB{
    
    public int modificacio(usuarios u) {
        
-    String cadenaSQL="UPDATE usuarios SET id='"+u.getId()+"', servicio='"+u.getServicio()+
+    String cadenaSQL="UPDATE usuarios SET servicio='"+u.getServicio()+
 		  "', usuario='"+u.getUsuario()
-  		+ "' WHERE pass="+u.getPass();
-    JOptionPane.showMessageDialog(null,cadenaSQL);
+  		+ "', pass='"+u.getPass()+"' WHERE id="+u.getId();
+    //JOptionPane.showMessageDialog(null,cadenaSQL);
     
     try {
         
