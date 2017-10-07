@@ -23,7 +23,7 @@ public class windowlogin extends JPanel{
     private JLabel ltitol, lservicio, lusuario, lpass;
     private JPanel panel1, panel2, panel3;
     private JTextField tservicio, tusuario, tpass;
-    private JButton botonlogin;
+    private JButton botonlogin, botonalta;
     private int files=0;
     
         class EscucharBoton implements ActionListener{
@@ -118,8 +118,9 @@ public class windowlogin extends JPanel{
         panel3.setLayout(new FlowLayout());
         botonlogin = new JButton("Login");botonlogin.setFont(normal);
         botonlogin.addActionListener(new windowlogin.EscucharBoton());
+        botonalta = new JButton("Alta");botonalta.setFont(normal);
         panel3.add(botonlogin);
-        
+        panel3.add(botonalta);
     }
         
 }
